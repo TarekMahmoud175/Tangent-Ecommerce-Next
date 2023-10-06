@@ -6,8 +6,16 @@ import InputComponent from "@/components/atoms/input";
 export default function Home() {
   return (
     <React.Fragment>
-      <ButtonComponent children={"hiiiiii"} />
-      <InputComponent />
+      <div className="container">
+        <div className="row">
+          <div className="col-6">
+            <ButtonComponent children={"hiiiiii"} />
+          </div>
+          <div className="col-6">
+            <InputComponent />
+          </div>
+        </div>
+      </div>
     </React.Fragment>
   );
 }
