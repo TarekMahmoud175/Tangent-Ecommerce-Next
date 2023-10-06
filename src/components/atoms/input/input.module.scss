@@ -1,0 +1,8 @@
+.input {
+    padding: 5px;
+    border: 1px solid var(--clr-main);
+    border-radius: 5px;
+    &:focus-visible{
+        outline: none;
+    }
+}

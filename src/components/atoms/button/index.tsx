@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const ButtonComponent = ({
   onClick,
-  className,
+  className="",
   children,
   ...rest
 }: ButtonProps) => {
