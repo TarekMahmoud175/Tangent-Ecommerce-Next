@@ -27,7 +27,13 @@ const product = {
 const ShopPageContainer = () => {
   return (
     <Layout page="shop">
-      <ProductCard product={product} />
+      <div className="row my-3">
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_product) => (
+          <div className="col-md-4 col-lg-3 col-sm-6 col-xs-12 my-2 ">
+            <ProductCard product={product} />
+          </div>
+        ))}
+      </div>
     </Layout>
   );
 };
