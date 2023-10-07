@@ -6,7 +6,7 @@ export default function useHandleErrors(): [(data: string) => void] {
 
   useEffect(() => {
     if (msg) {
-      toast.success(msg);
+      toast.error(msg);
       setErrorMsg("");
     }
   }, [msg]);

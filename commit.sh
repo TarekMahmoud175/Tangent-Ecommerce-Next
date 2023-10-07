@@ -16,4 +16,6 @@ git pull origin $branch
 
 git push origin $branch
 
+clear
+
 exit 0
