@@ -16,7 +16,7 @@ const NavbarComponent = () => {
                 alt="Tangent Logo"
                 className={styles.navLogo}
               />
-              <span className="mx-2">Ecommerce</span>
+              <span className="mx-2">Tangent</span>
             </div>
           </Link>
         </Navbar.Brand>
