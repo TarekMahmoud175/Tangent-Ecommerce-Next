@@ -1,10 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useCallback, useState } from "react";
 import styles from "./search.module.scss";
 import InputComponent from "@/components/atoms/input";
 import ButtonComponent from "@/components/atoms/button";
 import SearchSuggestionItem from "@/components/atoms/search-suggestion-item";
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-
+import { useSearchParams } from "next/navigation";
+import { Product } from "@/common/types/product";
 
 const product = {
   id: 1,
@@ -27,14 +29,42 @@ const product = {
 };
 
 const SearchComponent = () => {
+  const [SearchValue, setSearchValue] = useState<string>("");
+  const [SearchSuggestion, setSearchSuggestion] = useState<Product[]>([
+    product,
+    product,
+  ]);
+
+  const searchParams = useSearchParams();
+  const createQueryString = useCallback(
+    (name: string = "", value: string = "") => {
+      const params = new URLSearchParams(searchParams);
+      params.set(name, value);
+      return params.toString();
+    },
+    [searchParams]
+  );
+
+  const shouldShowSuggestion = SearchSuggestion.length && SearchValue;
 
   return (
     <div className={`d-flex ${styles.searchContainer}`}>
-      <InputComponent className={styles.searchInput} />
-      <ButtonComponent className={styles.searchbtn}>
+      <InputComponent
+        className={styles.searchInput}
+        value={SearchValue}
+        setValue={setSearchValue}
+      />
+      <ButtonComponent
+        className={styles.searchbtn}
+        onClick={() => createQueryString()}
+      >
         <img src="/icons/search-icon.svg" alt="search icon" />
       </ButtonComponent>
-      <ul className={styles.searchSuggestion} >
+      <ul
+        className={`${styles.searchSuggestion} ${
+          !shouldShowSuggestion ? styles.hide : ""
+        }`}
+      >
         {[1, 2, 3, 4, 5].map((_product) => (
           <SearchSuggestionItem product={product} />
         ))}
