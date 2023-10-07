@@ -1,0 +1,68 @@
+/* Define SCSS styles for the ProductCard component */
+.productCard {
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+    &:hover {
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+        opacity: 0.95;
+    }
+}
+
+.productImageContainer {
+    position: relative;
+    overflow: hidden;
+    padding-top: 75%;
+    /* 4:3 aspect ratio */
+}
+
+.productImage {
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    transition: transform 0.3s ease-in-out;
+}
+
+.productCardBody {
+    padding: 1rem;
+    background-color: #f8f9fa;
+}
+
+.productTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.productDescription {
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    color: #666;
+}
+
+.productInfo {
+    margin-top: 1rem;
+}
+
+.productPrice {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.originalPrice {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 0.5rem;
+}
+
+.productRating {
+    .ratingBadge {
+        font-size: 1rem;
+    }
+}
+
+.atc {
+    margin-top: 1rem;
+    width: 100%;
+}

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styles from "./navbar.module.scss";
@@ -18,7 +19,7 @@ const NavbarComponent = () => {
           </div>
         </Link>
       </Navbar.Brand>
-      
+
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
       <Navbar.Collapse
@@ -26,9 +27,9 @@ const NavbarComponent = () => {
         className={styles.collapseableNavbar}
       >
         <Nav className="mr-auto">
-          <Nav.Link>
+          {/* <Nav.Link> */}
             <Link href={"/shop"}>Shop</Link>
-          </Nav.Link>
+          {/* </Nav.Link> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

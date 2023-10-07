@@ -10,7 +10,7 @@ const Layout = ({ children, page }: LayoutProps) => {
   return (
     <div className={page} data-page-name={page} id="MainContent">
       <NavbarComponent />
-      <div className="container">{children}</div>
+      <main className="container">{children}</main>
     </div>
   );
 };
