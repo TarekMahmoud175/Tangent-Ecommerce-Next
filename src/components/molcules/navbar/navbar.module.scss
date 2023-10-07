@@ -1,27 +1,20 @@
 @import "@/common/styles/mixins/mixins.scss";
 
 
+.navbar {
+    justify-content: space-between;
+    padding-inline: 20px;
 
-
-@include desktop {
-    .navbar {
-        justify-content: space-between;
-        padding-inline: 20px;
-
-        .navLogo {
-            aspect-ratio: 1/1;
-            width: 50px;
-            flex: 0 0 20%;
-        }
-
-        &>#navbarSupportedContent {
-            display: flex;
-            justify-content: end;
-        }
-        form{
-            display: flex;
-        }
+    .navLogo {
+        aspect-ratio: 1/1;
+        width: 50px;
+        flex: 0 0 20%;
     }
 
-
+    .collapseableNavbar{
+        flex: 0 0 fit-content;
+    }
 }
+
+
+@include desktop {}
