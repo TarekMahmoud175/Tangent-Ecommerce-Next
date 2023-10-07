@@ -3,6 +3,7 @@ import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import styles from "./navbar.module.scss";
 import Link from "next/link";
+import SearchComponent from "../search";
 
 const NavbarComponent = () => {
   return (
@@ -12,16 +13,17 @@ const NavbarComponent = () => {
           <Link href={"/"}>
             <div>
               <img
-                src="/images/tangent.png"
+                src="/icons/logo.svg"
                 alt="Tangent Logo"
                 className={styles.navLogo}
               />
-              <span className="mx-2">Tangent</span>
             </div>
           </Link>
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+        <SearchComponent />
 
         <Navbar.Collapse
           id="basic-navbar-nav"
