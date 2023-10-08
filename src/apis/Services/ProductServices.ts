@@ -16,6 +16,18 @@ export class ProductServices {
         )
     }
 
+
+    static searchProducts(requestObject: RequestObject): Promise<any> {
+        let queryParam = useHandleQueryParams(requestObject)
+        return Network.fetch(
+            // @ts-ignore
+            ProductEndPoints.searchProducts.url(queryParam),
+            {
+                method: ProductEndPoints.searchProducts.method
+            }
+        )
+    }
+
 }
 
 

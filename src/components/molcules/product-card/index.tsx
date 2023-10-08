@@ -15,6 +15,7 @@ const ProductCard = ({ product }: productCardProps) => {
         src={product.thumbnail}
         className={`card-img-top ${styles.productImage}`}
         alt={product.title}
+        loading="lazy"
       />
 
       <div className={`card-body ${styles.productCardBody} d-flex flex-column justify-content-between`}>
