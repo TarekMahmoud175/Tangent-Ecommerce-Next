@@ -1,4 +1,4 @@
-import NavbarComponent from "@/components/molcules/navbar";
+import NavbarComponent from "@/components/organisms/navbar";
 import "./globals.scss";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
