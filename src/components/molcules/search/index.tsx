@@ -9,10 +9,11 @@ import { useRouter } from "next/navigation";
 import UseSetQUeryParams from "@/hooks/useSetQueryParam";
 import useSearchProduct from "@/hooks/requests-hooks/useSearchProducts";
 
+
 const SearchComponent = () => {
   const [InputFocused, SetInputFocused] = useState<Boolean>(false);
   const [SearchValue, setSearchValue] = useState<string>("");
-  const [debouncedSearchFunction, products] = useSearchProduct();
+  const [changeSearchValue, products] = useSearchProduct();
 
   const router = useRouter();
   const InputRef = useRef<HTMLInputElement>(null);
@@ -26,7 +27,7 @@ const SearchComponent = () => {
         value={SearchValue}
         setValue={(e) => {
           setSearchValue(e);
-          debouncedSearchFunction(e);
+          changeSearchValue(e);
         }}
         Inputref={InputRef}
         handleFocus={() => SetInputFocused(true)}
