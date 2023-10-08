@@ -11,7 +11,7 @@ export class Network {
   private static bearer: string = "";
 
 
-  static async fetch(url: string, init: RequestInit, addAuth: boolean): Promise<any> {
+  static async fetch(url: string, init: RequestInit, addAuth: boolean = false): Promise<any> {
     const requestedUrl = url.includes("http")
       ? url
       : ApiDomain + url;
