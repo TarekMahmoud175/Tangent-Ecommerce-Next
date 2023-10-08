@@ -5,7 +5,7 @@ import { RequestObject } from "@/common/types/requestObject";
 
 export class ProductServices {
 
-    getProducts(requestObject: RequestObject): Promise<any> {
+    static getProducts(requestObject: RequestObject): Promise<any> {
         let queryParam = useHandleQueryParams(requestObject)
         return Network.fetch(
             // @ts-ignore

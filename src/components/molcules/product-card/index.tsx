@@ -12,7 +12,7 @@ const ProductCard = ({ product }: productCardProps) => {
 
   handleCurrency(1500)
   return (
-    <div className={`card ${styles.productCard}`}>
+    <div className={`card ${styles.productCard} h-100`}>
       <img
         src={product.thumbnail}
         className={`card-img-top ${styles.productImage}`}
