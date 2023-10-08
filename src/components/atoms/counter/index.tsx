@@ -4,7 +4,12 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 import ButtonComponent from "@/components/atoms/button";
 import styles from "./counter.module.scss";
 
-const Counter = () => {
+type CounterProps = {
+  handleIncrease?: (e: string) => void;
+  handleDecrease?: (e: string) => void;
+};
+
+const Counter = ({ handleDecrease, handleIncrease }: CounterProps) => {
   const [count, setCount] = useState<number>(0);
 
   const increment = () => {
