@@ -7,12 +7,18 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
   setValue?: (e: string) => void;
   checked?: boolean;
+  Inputref?: React.RefObject<HTMLInputElement>;
+  handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void; // Adjusted type
+  handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;  // Adjusted type
 }
 
 const InputComponent = ({
   inputType = "text",
   className = "",
   setValue = (_e) => {},
+  Inputref,
+  handleFocus,
+  handleBlur,
   ...rest
 }: InputProps) => {
   return (
@@ -20,6 +26,9 @@ const InputComponent = ({
       type={inputType}
       className={`${className} ${styles.input}`}
       onChange={(e) => setValue(e.target.value)}
+      ref={Inputref}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
       {...rest}
     />
   );

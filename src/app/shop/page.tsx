@@ -9,6 +9,5 @@ export default async function Shop() {
 
   };
   const products = await ProductServices.getProducts(RequsetObject);
-  console.log(products);
   return <ShopPageContainer productsRes={products} />;
 }

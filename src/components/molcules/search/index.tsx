@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import styles from "./search.module.scss";
 import InputComponent from "@/components/atoms/input";
 import ButtonComponent from "@/components/atoms/button";
 import SearchSuggestionItem from "@/components/atoms/search-suggestion-item";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Product } from "@/common/types/product";
+import UseSetQUeryParams from "@/hooks/useSetQueryParam";
 
 const product = {
   id: 1,
@@ -29,23 +30,17 @@ const product = {
 };
 
 const SearchComponent = () => {
+  const [InputFocused, SetInputFocused] = useState<Boolean>(false);
   const [SearchValue, setSearchValue] = useState<string>("");
-  const [SearchSuggestion, setSearchSuggestion] = useState<Product[]>([
-    product,
-    product,
-  ]);
+  const [SearchSuggestion, setSearchSuggestion] = useState<Product[]>([]);
+  const router = useRouter();
 
-  const searchParams = useSearchParams();
-  const createQueryString = useCallback(
-    (name: string = "", value: string = "") => {
-      const params = new URLSearchParams(searchParams);
-      params.set(name, value);
-      return params.toString();
-    },
-    [searchParams]
-  );
+  const InputRef = useRef<HTMLInputElement>(null);
 
-  const shouldShowSuggestion = SearchSuggestion.length && SearchValue;
+  const shouldShowSuggestion =
+    SearchSuggestion.length && SearchValue && InputFocused;
+
+  const [ pathname, createQueryString] = UseSetQUeryParams();
 
   return (
     <div className={`d-flex ${styles.searchContainer}`}>
@@ -53,10 +48,16 @@ const SearchComponent = () => {
         className={styles.searchInput}
         value={SearchValue}
         setValue={setSearchValue}
+        Inputref={InputRef}
+        handleFocus={() => SetInputFocused(true)}
+        handleBlur={() => SetInputFocused(false)}
       />
       <ButtonComponent
         className={styles.searchbtn}
-        onClick={() => createQueryString()}
+        onClick={() => {
+          // @ts-ignore
+          router.push(pathname + "?" + createQueryString("search", SearchValue));
+        }}
       >
         <img src="/icons/search-icon.svg" alt="search icon" />
       </ButtonComponent>
@@ -65,8 +66,8 @@ const SearchComponent = () => {
           !shouldShowSuggestion ? styles.hide : ""
         }`}
       >
-        {[1, 2, 3, 4, 5].map((_product) => (
-          <SearchSuggestionItem product={product} />
+        {[1, 2, 3, 4, 5].map((_product, index) => (
+          <SearchSuggestionItem product={product} key={"heiueio" + index} />
         ))}
       </ul>
     </div>
