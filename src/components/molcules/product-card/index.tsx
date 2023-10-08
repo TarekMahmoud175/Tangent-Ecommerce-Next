@@ -9,8 +9,6 @@ type productCardProps = {
 };
 
 const ProductCard = ({ product }: productCardProps) => {
-
-  handleCurrency(1500)
   return (
     <div className={`card ${styles.productCard} h-100`}>
       <img
@@ -19,31 +17,37 @@ const ProductCard = ({ product }: productCardProps) => {
         alt={product.title}
       />
 
-      <div className={`card-body ${styles.productCardBody}`}>
-        <h5 className={`card-title ${styles.productTitle}`}>{product.title}</h5>
-        <p className={`card-text ${styles.productDescription}`}>
-          {product.description}
-        </p>
-
-        <div
-          className={`d-flex justify-content-between align-items-center ${styles.productInfo}`}
-        >
-          <p className={`card-text ${styles.productPrice}`}>
-            <span className={styles.originalPrice}>
-              {handleCurrency(product.price)}
-            </span>
-            {handleCurrency(
-              Math.round(
-                product.price -
-                  (product.price * product.discountPercentage) / 100
-              )
-            )}
+      <div className={`card-body ${styles.productCardBody} d-flex flex-column justify-content-between`}>
+        <section>
+          <h5 className={`card-title ${styles.productTitle}`}>
+            {product.title}
+          </h5>
+          <p className={`card-text ${styles.productDescription}`}>
+            {product.description}
           </p>
-        </div>
+        </section>
 
-        <ButtonComponent className={`${styles.atc}`}>
-          Add to Cart
-        </ButtonComponent>
+        <section>
+          <div
+            className={`d-flex justify-content-between align-items-center ${styles.productInfo}`}
+          >
+            <p className={`card-text ${styles.productPrice}`}>
+              <span className={styles.originalPrice}>
+                {handleCurrency(product.price)}
+              </span>
+              {handleCurrency(
+                Math.round(
+                  product.price -
+                    (product.price * product.discountPercentage) / 100
+                )
+              )}
+            </p>
+          </div>
+
+          <ButtonComponent className={`${styles.atc}`}>
+            Add to Cart
+          </ButtonComponent>
+        </section>
       </div>
     </div>
   );
