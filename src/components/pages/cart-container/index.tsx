@@ -7,6 +7,7 @@ import CartHeader from "@/components/atoms/cart-header";
 import CartFooter from "@/components/atoms/cart-footer";
 import { useSelector } from "react-redux";
 import { CartItem } from "@/common/types/cartItem";
+import Link from "next/link";
 
 const CartPageContainer = () => {
   // @ts-ignore
@@ -14,16 +15,28 @@ const CartPageContainer = () => {
 
   return (
     <React.Fragment>
-      <CartHeader />
+      {Boolean(cart.length) ? (
+        <div className="text-center">
+          <h3>Cart Is Empty</h3>
 
-      {cart.map((item: CartItem) => (
-        <CartItemComponent
-          product={item}
-          key={`CartItemsSection ==>  product_ID ${item.id} , product_title ${item.title} `}
-        />
-      ))}
+          <Link className={styles.link} href={"/shop"}>
+            Continue Shopping
+          </Link>
+        </div>
+      ) : (
+        <>
+          <CartHeader />
 
-      <CartFooter CartTotal={total} />
+          {cart.map((item: CartItem) => (
+            <CartItemComponent
+              product={item}
+              key={`CartItemsSection ==>  product_ID ${item.id} , product_title ${item.title} `}
+            />
+          ))}
+
+          <CartFooter CartTotal={total} />
+        </>
+      )}
     </React.Fragment>
   );
 };
