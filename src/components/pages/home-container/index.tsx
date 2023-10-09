@@ -1,9 +1,8 @@
 import React from "react";
-import styles from "./home.module.scss";
-import Counter from "@/components/atoms/counter";
+import CartItem from "@/components/molcules/cart-item";
 
 const HompePageContainer = () => {
-  return <Counter />;
+  return <CartItem />;
 };
 
 export default HompePageContainer;

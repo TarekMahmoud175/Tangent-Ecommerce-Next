@@ -1,0 +1,18 @@
+  .productImage {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+  }
+
+  .productName {
+      max-width: 100px;
+  }
+
+  .priceBeforeDiscount {
+      color: #ccc;
+      text-decoration: line-through;
+      text-decoration-color: #ccc;
+  }
+
+
+
