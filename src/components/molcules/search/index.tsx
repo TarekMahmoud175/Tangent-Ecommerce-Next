@@ -9,8 +9,11 @@ import { useRouter } from "next/navigation";
 import UseSetQUeryParams from "@/hooks/useSetQueryParam";
 import useSearchProduct from "@/hooks/requests-hooks/useSearchProducts";
 
+type SearchProps = {
+  className?: string;
+};
 
-const SearchComponent = () => {
+const SearchComponent = ({ className }: SearchProps) => {
   const [InputFocused, SetInputFocused] = useState<Boolean>(false);
   const [SearchValue, setSearchValue] = useState<string>("");
   const [changeSearchValue, products] = useSearchProduct();
@@ -21,7 +24,7 @@ const SearchComponent = () => {
   const [pathname, createQueryString] = UseSetQUeryParams();
 
   return (
-    <div className={`d-flex ${styles.searchContainer}`}>
+    <div className={`d-flex ${styles.searchContainer} ${className}`}>
       <InputComponent
         className={styles.searchInput}
         value={SearchValue}

@@ -5,13 +5,15 @@ import styles from "./navbar.module.scss";
 import Link from "next/link";
 import SearchComponent from "@/components/molcules/search";
 import UseCart from "@/hooks/useCart";
-
-
+import { useSelector } from "react-redux";
 const NavbarComponent = () => {
-  UseCart()
+  UseCart();
+  // @ts-ignore
+  const { cart } = useSelector((state) => state.cart);
+
   return (
     <Navbar expand="lg" className={styles.navbar}>
-      <div className="container">
+      <div className={`container ${styles.container}`}>
         <Navbar.Brand>
           <Link href={"/"}>
             <div>
@@ -26,7 +28,7 @@ const NavbarComponent = () => {
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-        <SearchComponent />
+        <SearchComponent className={styles.searchContainer} />
 
         <Navbar.Collapse
           id="basic-navbar-nav"
@@ -34,6 +36,12 @@ const NavbarComponent = () => {
         >
           <Nav className="mr-auto">
             <Link href={"/shop"}>Shop</Link>
+            <Link href={"/cart"} className={styles.cartLengthContainer}>
+              cart
+              {Boolean(cart) && (
+                <span className={styles.cartCount}>{cart.length}</span>
+              )}
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </div>
