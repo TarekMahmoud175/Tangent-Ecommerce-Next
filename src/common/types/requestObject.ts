@@ -1,4 +1,4 @@
 export interface RequestObject {
-    [key: string]: string | null | number
+    [key: string]: string| string[] | null | number
 
 }

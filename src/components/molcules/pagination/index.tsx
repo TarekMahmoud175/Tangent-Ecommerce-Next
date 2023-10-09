@@ -14,7 +14,7 @@ const PaginationComponent = ({
       <div className="col-md-6">
         <ReactPaginate
           pageCount={pagesCount}
-          initialPage={1}
+          initialPage={0}
           onPageChange={onPageChange}
           breakClassName={"page-item"}
           breakLinkClassName={"page-link"}
