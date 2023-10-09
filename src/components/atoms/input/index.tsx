@@ -8,8 +8,8 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   setValue?: (e: string) => void;
   checked?: boolean;
   Inputref?: React.RefObject<HTMLInputElement>;
-  handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void; // Adjusted type
-  handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;  // Adjusted type
+  handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 const InputComponent = ({

@@ -1,4 +1,6 @@
 @import 'bootstrap/dist/css/bootstrap.css';
+@import '@etchteam/next-pagination/dist/index.css';
+
 
 
 :root {
@@ -44,4 +46,15 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+
+.page-item.active >  a{
+  background-color: var(--clr-main);
+  color: #fff;
+  border-color:  var(--clr-main);
+}
+
+.page-item:not(.active) >a {
+  color: var(--clr-main);
 }
