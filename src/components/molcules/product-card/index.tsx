@@ -58,21 +58,23 @@ const ProductCard = ({ product, cart = [] }: productCardProps) => {
           <div
             className={`d-flex justify-content-between align-items-center ${styles.productInfo}`}
           >
-            <p className={`card-text ${styles.productPrice}`}>
+            <p className={`card-text ${styles.productPrice} d-flex flex-wrap`}>
               <span className={styles.originalPrice}>
                 {handleCurrency(product.price)}
               </span>
-              {handleCurrency(
-                Math.round(
-                  product.price -
-                    (product.price * product.discountPercentage) / 100
-                )
-              )}
+              <span>
+                {handleCurrency(
+                  Math.round(
+                    product.price -
+                      (product.price * product.discountPercentage) / 100
+                  )
+                )}
+              </span>
             </p>
           </div>
 
           {CartProduct ? (
-            <div className="d-flex align-items-center justify-content-between mt-3">
+            <div className="d-flex align-items-center justify-content-between flex-wrap  mt-3">
               <Counter
                 counterStart={CartProduct.quantity}
                 className={styles.counterContainer}

@@ -1,17 +1,46 @@
+@import "@/common/styles/mixins/mixins.scss";
+
 .counterContainer {
-    width: 45% !important;
-    max-width: unset;
+    width: max-content !important;
+    max-width: 45% !important;
+    // max-width: unset !important;
 }
 
 .removeBtn {
-    width: 45%;
-    border-color: var(--clr-danger);
-    color: var(--clr-danger);
+    width: 45% !important;
+    border-color: var(--clr-danger) !important;
+    color: var(--clr-danger) !important;
     border-radius: 5px;
 
     &:hover {
-        color: #fff;
-        background-color: var(--clr-danger);
+        color: #fff !important;
+        background-color: var(--clr-danger) !important;
+
+    }
+}
+
+@include mobile {
+    .counterContainer {
+        width: 100% !important;
+        max-width: unset !important;
+    }
+
+    .removeBtn {
+        width: 100% !important;
+        margin-top: 8px;
+    }
+}
+
+@include tablet {
+    .counterContainer {
+        width: 100% !important;
+        max-width: unset !important;
+    }
+
+    .removeBtn {
+        width: 100% !important;
+        margin-top: 8px;
+
     }
 }
 
