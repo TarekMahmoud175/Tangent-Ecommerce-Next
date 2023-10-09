@@ -1,18 +1,29 @@
-  .productImage {
-      width: 150px;
-      height: 150px;
-      object-fit: contain;
-  }
-
-  .productName {
-      max-width: 100px;
-  }
-
-  .priceBeforeDiscount {
-      color: #ccc;
-      text-decoration: line-through;
-      text-decoration-color: #ccc;
-  }
+@import "@/common/styles/mixins/mixins.scss";
 
 
+.productImage {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
 
+.productName {
+    max-width: 100px;
+}
+
+.priceBeforeDiscount {
+    color: #ccc;
+    text-decoration: line-through;
+    text-decoration-color: #ccc;
+}
+.cartItem{
+    border-bottom: 1px solid #000000 ;
+}
+
+@include mobile {
+    .productImage {
+        width: 100%;
+        object-fit: cover;
+    }
+
+}

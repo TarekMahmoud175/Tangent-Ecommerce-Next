@@ -1,0 +1,17 @@
+@import "@/common/styles/mixins/mixins.scss";
+
+.checoutbtn {
+    border-radius: 5px !important;
+    width: 100%;
+    
+}
+
+.cartFooterData {
+    width: 20%;
+}
+
+@include mobile{
+    .cartFooterData{
+        width: 100%;
+    }
+}

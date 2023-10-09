@@ -23,11 +23,13 @@ const CartItem = ({}) => {
       "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
     ],
   };
-  const hasDiscount = product.discountPercentage > 0
-  const PriceBeforDiscount = parseFloat((product.price / (1 - product.discountPercentage / 100)).toFixed(2))
+  const hasDiscount = product.discountPercentage > 0;
+  const PriceBeforDiscount = parseFloat(
+    (product.price / (1 - product.discountPercentage / 100)).toFixed(2)
+  );
   return (
-    <div className="row">
-      <div className="col-md-4 d-flex align-items-center gap-2">
+    <div className={`row ${styles.cartItem} my-2 py-2`}>
+      <div className="col-md-4 d-flex align-items-center justify-content-center justify-content-md-start flex-column flex-md-row gap-2">
         <img
           src={product.thumbnail}
           alt={product.title}
@@ -36,12 +38,17 @@ const CartItem = ({}) => {
         <p className={styles.productName}>{product.title}</p>
       </div>
 
-      <div className="col-md-4 cart-item-details d-flex align-items-center gap-3">
+      <div className="col-md-4  cart-item-details d-flex align-items-center justify-content-center justify-content-md-start gap-3">
         <p className={styles.price}>{handleCurrency(product.price)}</p>
-        {hasDiscount && (<p className={styles.priceBeforeDiscount}> {handleCurrency(PriceBeforDiscount)}</p>)}
+        {hasDiscount && (
+          <p className={styles.priceBeforeDiscount}>
+            {" "}
+            {handleCurrency(PriceBeforDiscount)}
+          </p>
+        )}
       </div>
 
-      <div className="col-md-4 d-flex align-items-center">
+      <div className="col-md-4 d-flex align-items-center justify-content-center justify-content-md-start">
         <Counter />
       </div>
     </div>
