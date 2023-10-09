@@ -5,20 +5,25 @@ import ButtonComponent from "@/components/atoms/button";
 import styles from "./counter.module.scss";
 
 type CounterProps = {
-  handleIncrease?: (e: string) => void;
-  handleDecrease?: (e: string) => void;
+  handleIncrease?: (e: number) => void;
+  handleDecrease?: (e: number) => void;
 };
 
-const Counter = ({ handleDecrease, handleIncrease }: CounterProps) => {
+const Counter = ({
+  handleDecrease = () => {},
+  handleIncrease = () => {},
+}: CounterProps) => {
   const [count, setCount] = useState<number>(0);
 
   const increment = () => {
     setCount(count + 1);
+    handleIncrease(count + 1);
   };
 
   const decrement = () => {
     if (count > 0) {
       setCount(count - 1);
+      handleDecrease(count - 1);
     }
   };
 
