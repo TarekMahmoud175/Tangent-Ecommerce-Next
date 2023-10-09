@@ -44,6 +44,7 @@ const UseCart = () => {
     const removeFromCart = (Product: CartItem) => {
         let cart = getCart()
         const updatedProducts: CartItem[] = cart.filter((item) => item.id !== Product.id);
+        calcTotal(updatedProducts)
         dispatch(saveCart(updatedProducts))
         localStorage.setItem("cart", JSON.stringify(updatedProducts))
     }

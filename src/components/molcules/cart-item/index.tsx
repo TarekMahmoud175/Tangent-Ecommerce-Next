@@ -1,8 +1,11 @@
 import Counter from "@/components/atoms/counter";
-import React from "react";
+import React, { useState, useMemo } from "react";
 import styles from "./cartItem.module.scss";
 import { handleCurrency } from "@/utils/handleCurrency";
 import { CartItem } from "@/common/types/cartItem";
+import UseCart from "@/hooks/useCart";
+import { debounce } from "@/utils/depounce";
+import ButtonComponent from "@/components/atoms/button";
 
 type CartItemProps = {
   product: CartItem;
@@ -10,8 +13,20 @@ type CartItemProps = {
 
 const CartItemComponent = ({ product }: CartItemProps) => {
   const hasDiscount = product.discountPercentage > 0;
+  const { removeFromCart, changeQuantity } = UseCart();
+
   const PriceBeforDiscount = parseFloat(
     (product.price / (1 - product.discountPercentage / 100)).toFixed(2)
+  );
+
+  const increaseValue = useMemo(
+    () => debounce((e: number) => changeQuantity(product, e), 500),
+    []
+  );
+
+  const decreaseValue = useMemo(
+    () => debounce((e: number) => changeQuantity(product, e), 500),
+    []
   );
   return (
     <div className={`row ${styles.cartItem} my-2 py-2`}>
@@ -21,8 +36,14 @@ const CartItemComponent = ({ product }: CartItemProps) => {
           alt={product.title}
           className={styles.productImage}
         />
-        <div className="d-flex">
+        <div className="d-flex flex-column">
           <p className={styles.productName}>{product.title}</p>
+          <ButtonComponent
+            className={`${styles.removeBtn}`}
+            onClick={() => removeFromCart(product)}
+          >
+            Remove
+          </ButtonComponent>
         </div>
       </div>
 
@@ -36,7 +57,11 @@ const CartItemComponent = ({ product }: CartItemProps) => {
       </div>
 
       <div className="col-md-4 d-flex align-items-center justify-content-center justify-content-md-start">
-        <Counter counterStart={product.quantity} />
+        <Counter
+          counterStart={product.quantity}
+          handleDecrease={increaseValue}
+          handleIncrease={decreaseValue}
+        />
       </div>
     </div>
   );

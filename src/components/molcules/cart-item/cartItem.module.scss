@@ -7,6 +7,20 @@
     object-fit: contain;
 }
 
+.removeBtn {
+    color: var(--clr-danger);
+    border: none;
+    padding: 0 ;
+    text-decoration: underline;
+    font-size: 14px;
+    text-align: start;
+    
+    &:hover {
+        background-color: #fff;
+        color: var(--clr-danger);
+    }
+}
+
 .productName {
     max-width: 100px;
 }
@@ -16,8 +30,9 @@
     text-decoration: line-through;
     text-decoration-color: #ccc;
 }
-.cartItem{
-    border-bottom: 1px solid #000000 ;
+
+.cartItem {
+    border-bottom: 1px solid #000000;
 }
 
 @include mobile {
