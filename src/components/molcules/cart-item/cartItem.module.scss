@@ -23,6 +23,12 @@
 
 .productName {
     max-width: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    &:hover{
+        overflow: visible;
+    }
 }
 
 .priceBeforeDiscount {
@@ -40,5 +46,12 @@
         width: 100%;
         object-fit: cover;
     }
+    .removeBtn{
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    .productName{
+        max-width: unset;
+    } 
 
 }

@@ -36,7 +36,7 @@ const CartItemComponent = ({
   );
   return (
     <div className={`row ${styles.cartItem} my-2 py-2`}>
-      <div className="col-md-4 d-flex align-items-center justify-content-center justify-content-md-start flex-column flex-md-row gap-2">
+      <div className="col-md-4 d-flex align-items-center justify-content-center align-items-center justify-content-md-start flex-column flex-md-row gap-2">
         <img
           src={product.thumbnail}
           alt={product.title}
