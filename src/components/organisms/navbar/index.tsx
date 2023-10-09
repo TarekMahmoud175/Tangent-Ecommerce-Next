@@ -38,7 +38,7 @@ const NavbarComponent = () => {
             <Link href={"/shop"}>Shop</Link>
             <Link href={"/cart"} className={styles.cartLengthContainer}>
               cart
-              {Boolean(cart) && (
+              {Boolean(cart.length) && (
                 <span className={styles.cartCount}>{cart.length}</span>
               )}
             </Link>
