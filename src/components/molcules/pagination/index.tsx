@@ -11,7 +11,7 @@ const PaginationComponent = ({
 }: PaginationPropsType) => {
   return (
     <div className="row my-4 justify-content-center">
-      <div className="col-md-6 col-10">
+      <div className="col-md-6  d-flex justify-content-center">
         <ReactPaginate
           pageCount={pagesCount}
           initialPage={0}

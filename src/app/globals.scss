@@ -1,6 +1,5 @@
 @import 'bootstrap/dist/css/bootstrap.css';
-@import '@etchteam/next-pagination/dist/index.css';
-
+@import "@/common/styles/mixins/mixins.scss";
 
 
 :root {
@@ -17,6 +16,11 @@
 #MainContent>main.container {
   margin-top: 100px;
   margin-bottom: 50px;
+
+  @include mobile {
+    margin-top: 120px;
+
+  }
 }
 
 
@@ -49,12 +53,57 @@ a {
 }
 
 
-.page-item.active >  a{
+.page-item.active>a {
   background-color: var(--clr-main);
   color: #fff;
-  border-color:  var(--clr-main);
+  border-color: var(--clr-main);
 }
 
-.page-item:not(.active) >a {
+.page-item:not(.active)>a {
   color: var(--clr-main);
+}
+
+.page-item:has(a[aria-label="Next page"]),
+.page-item:has(a[aria-label="Previous page"]) {
+  a {
+    opacity: 0;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    z-index: 1;
+    border: 0px;
+  }
+
+  position: relative;
+  width: 40px;
+  height: 38px;
+  border: 1px solid #dee2e6 ;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: url("/icons/arrow-right.png");
+    background-size: contain;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 0;
+  }
+}
+
+.page-item:has(a[aria-label="Previous page"])::after {
+  background: url("/icons/arrow-left.png");
+  background-size: contain;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 0;
+}
+
+.page-item.disabled a {
+  color: #e9ecef;
 }
