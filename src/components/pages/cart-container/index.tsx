@@ -8,14 +8,16 @@ import CartFooter from "@/components/atoms/cart-footer";
 import { useSelector } from "react-redux";
 import { CartItem } from "@/common/types/cartItem";
 import Link from "next/link";
+import UseCart from "@/hooks/useCart";
 
 const CartPageContainer = () => {
   // @ts-ignore
   let { cart, total } = useSelector((state) => state?.cart);
+  const { removeFromCart, changeQuantity } = UseCart();
 
   return (
     <React.Fragment>
-      {Boolean(cart.length) ? (
+      {!Boolean(cart.length) ? (
         <div className="text-center">
           <h3>Cart Is Empty</h3>
 
@@ -31,6 +33,8 @@ const CartPageContainer = () => {
             <CartItemComponent
               product={item}
               key={`CartItemsSection ==>  product_ID ${item.id} , product_title ${item.title} `}
+              removeItem={removeFromCart}
+              changeQty={changeQuantity}
             />
           ))}
 

@@ -6,26 +6,32 @@ import { CartItem } from "@/common/types/cartItem";
 import UseCart from "@/hooks/useCart";
 import { debounce } from "@/utils/depounce";
 import ButtonComponent from "@/components/atoms/button";
+import { Product } from "@/common/types/product";
 
 type CartItemProps = {
   product: CartItem;
+  removeItem: (product: CartItem) => void;
+  changeQty: (product: Product, quantity: number) => void;
 };
 
-const CartItemComponent = ({ product }: CartItemProps) => {
+const CartItemComponent = ({
+  product,
+  removeItem = () => {},
+  changeQty = () => {},
+}: CartItemProps) => {
   const hasDiscount = product.discountPercentage > 0;
-  const { removeFromCart, changeQuantity } = UseCart();
 
   const PriceBeforDiscount = parseFloat(
     (product.price / (1 - product.discountPercentage / 100)).toFixed(2)
   );
 
   const increaseValue = useMemo(
-    () => debounce((e: number) => changeQuantity(product, e), 500),
+    () => debounce((e: number) => changeQty(product, e), 500),
     []
   );
 
   const decreaseValue = useMemo(
-    () => debounce((e: number) => changeQuantity(product, e), 500),
+    () => debounce((e: number) => changeQty(product, e), 500),
     []
   );
   return (
@@ -40,7 +46,7 @@ const CartItemComponent = ({ product }: CartItemProps) => {
           <p className={styles.productName}>{product.title}</p>
           <ButtonComponent
             className={`${styles.removeBtn}`}
-            onClick={() => removeFromCart(product)}
+            onClick={() => removeItem(product)}
           >
             Remove
           </ButtonComponent>
@@ -61,6 +67,7 @@ const CartItemComponent = ({ product }: CartItemProps) => {
           counterStart={product.quantity}
           handleDecrease={increaseValue}
           handleIncrease={decreaseValue}
+          onZeroReach={() => removeItem(product)}
         />
       </div>
     </div>

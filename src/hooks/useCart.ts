@@ -56,12 +56,9 @@ const UseCart = () => {
 
 
     useEffect(() => {
-        if (!sessionStorage.getItem("calculatedOnce")) {
             let cart = getCart()
             dispatch(saveCart(cart))
             calcTotal()
-            sessionStorage.setItem("calculatedOnce", "true")
-        }
     }, [])
 
 
