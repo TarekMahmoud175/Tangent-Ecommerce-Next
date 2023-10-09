@@ -1,0 +1,11 @@
+@import "../../../common/styles/mixins/mixins.scss";
+
+.cartHeader {
+    border-bottom: 1px solid #000;
+}
+
+@include mobile{
+    .cartHeader{
+        border: 0px;
+    }
+}
