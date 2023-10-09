@@ -2,6 +2,7 @@ import NavbarComponent from "@/components/organisms/navbar";
 import "./globals.scss";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Provider } from "@/Redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div id="MainContent">
-          <NavbarComponent />
-          <main className={`container`}>{children}</main>
-        </div>
+        <Provider>
+          <div id="MainContent">
+            <NavbarComponent />
+            <main className={`container`}>{children}</main>
+          </div>
+        </Provider>
       </body>
     </html>
   );

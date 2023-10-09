@@ -28,6 +28,6 @@ export const CartSlice = createSlice({
     },
 });
 
-export const { saveCart } = CartSlice.actions
+export const { saveCart, saveTotal } = CartSlice.actions
 
 export default CartSlice.reducer;
