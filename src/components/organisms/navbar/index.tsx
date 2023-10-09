@@ -4,8 +4,11 @@ import { Nav, Navbar } from "react-bootstrap";
 import styles from "./navbar.module.scss";
 import Link from "next/link";
 import SearchComponent from "@/components/molcules/search";
+import UseCart from "@/hooks/useCart";
+
 
 const NavbarComponent = () => {
+  UseCart()
   return (
     <Navbar expand="lg" className={styles.navbar}>
       <div className="container">

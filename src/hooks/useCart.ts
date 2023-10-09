@@ -2,10 +2,11 @@
 
 import { saveCart, saveTotal } from "@/Redux/slices/cart-slice";
 import { CartItem } from "@/common/types/cartItem";
+import { Product } from "@/common/types/product";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux"
 
-const useHandleCart = () => {
+const UseCart = () => {
     const dispatch = useDispatch()
 
     const GetCart = () => {
@@ -14,14 +15,14 @@ const useHandleCart = () => {
         return cart
     }
 
-    const SaveToCart = (AddedItem: CartItem) => {
+    const SaveToCart = (AddedItem: CartItem | Product) => {
         let cart = GetCart();
-        let index = cart.findIndex((item: CartItem) => item?.id == AddedItem?.id);
         let newCart = [...cart]
-        if (index == -1) newCart.push(AddedItem)
+        let index = newCart.findIndex((item: CartItem) => item?.id == AddedItem?.id);
+        if (index == -1) newCart.push({ ...AddedItem, quantity: 1 })
         else {
-            //@ts-ignore
-            newCart?.[index] = AddedItem
+            // @ts-ignore
+            newCart[index] = AddedItem
         }
         dispatch(saveCart(newCart))
         localStorage.setItem("cart", JSON.stringify(newCart))
@@ -46,6 +47,12 @@ const useHandleCart = () => {
         localStorage.setItem("cart", JSON.stringify(updatedProducts))
     }
 
+    const changeQuantity = (product: Product, quantity = 1) => {
+        SaveToCart({ ...product, quantity: quantity })
+    }
+
+
+
     useEffect(() => {
         let cart = GetCart()
         dispatch(saveCart(cart))
@@ -53,9 +60,10 @@ const useHandleCart = () => {
 
 
 
-    return { SaveToCart, RemoveFromCart, CalcTotal }
+
+    return { SaveToCart, RemoveFromCart, CalcTotal, changeQuantity }
 
 }
 
 
-export default useHandleCart;
+export default UseCart;

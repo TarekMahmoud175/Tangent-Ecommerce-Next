@@ -1,3 +1,21 @@
+.counterContainer {
+    width: 45% !important;
+    max-width: unset;
+}
+
+.removeBtn {
+    width: 45%;
+    border-color: var(--clr-danger);
+    color: var(--clr-danger);
+    border-radius: 5px;
+
+    &:hover {
+        color: #fff;
+        background-color: var(--clr-danger);
+    }
+}
+
+
 .productCard {
     width: 100%;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -58,4 +76,3 @@
     width: 100%;
     border-radius: 5px;
 }
-
