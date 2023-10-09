@@ -9,14 +9,14 @@ import { useDispatch } from "react-redux"
 const UseCart = () => {
     const dispatch = useDispatch()
 
-    const GetCart = () => {
+    const getCart = () => {
         let SavedCart = localStorage.getItem("cart")
         let cart = (SavedCart ? JSON.parse(SavedCart) : []) as CartItem[];
         return cart
     }
 
-    const SaveToCart = (AddedItem: CartItem | Product) => {
-        let cart = GetCart();
+    const saveToCart = (AddedItem: CartItem | Product) => {
+        let cart = getCart();
         let newCart = [...cart]
         let index = newCart.findIndex((item: CartItem) => item?.id == AddedItem?.id);
         if (index == -1) newCart.push({ ...AddedItem, quantity: 1 })
@@ -24,13 +24,14 @@ const UseCart = () => {
             // @ts-ignore
             newCart[index] = AddedItem
         }
+        calcTotal(newCart)
         dispatch(saveCart(newCart))
         localStorage.setItem("cart", JSON.stringify(newCart))
     }
 
 
-    const CalcTotal = () => {
-        let cart = GetCart();
+    const calcTotal = (cartInstance?: CartItem[]) => {
+        let cart = cartInstance || getCart();
         let total = 0;
         cart.forEach(product => {
             let price = product.price * product.quantity
@@ -40,28 +41,29 @@ const UseCart = () => {
     }
 
 
-    const RemoveFromCart = (Product: CartItem) => {
-        let cart = GetCart()
+    const removeFromCart = (Product: CartItem) => {
+        let cart = getCart()
         const updatedProducts: CartItem[] = cart.filter((item) => item.id !== Product.id);
         dispatch(saveCart(updatedProducts))
         localStorage.setItem("cart", JSON.stringify(updatedProducts))
     }
 
     const changeQuantity = (product: Product, quantity = 1) => {
-        SaveToCart({ ...product, quantity: quantity })
+        saveToCart({ ...product, quantity: quantity })
     }
 
 
 
     useEffect(() => {
-        let cart = GetCart()
+        let cart = getCart()
         dispatch(saveCart(cart))
+        calcTotal()
     }, [])
 
 
 
 
-    return { SaveToCart, RemoveFromCart, CalcTotal, changeQuantity }
+    return { saveToCart, removeFromCart, calcTotal, changeQuantity }
 
 }
 

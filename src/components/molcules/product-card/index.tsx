@@ -13,7 +13,7 @@ type productCardProps = {
 };
 
 const ProductCard = ({ product, cart = [] }: productCardProps) => {
-  const { SaveToCart, RemoveFromCart, changeQuantity } = UseCart();
+  const { saveToCart, removeFromCart, changeQuantity } = UseCart();
   const [CartProduct, setCartProduct] = useState<CartItem | undefined>(
     undefined
   );
@@ -78,11 +78,11 @@ const ProductCard = ({ product, cart = [] }: productCardProps) => {
                 className={styles.counterContainer}
                 handleDecrease={decreaseValue}
                 handleIncrease={increaseValue}
-                onZeroReach={() => RemoveFromCart(CartProduct)}
+                onZeroReach={() => removeFromCart(CartProduct)}
               />
               <ButtonComponent
                 className={styles.removeBtn}
-                onClick={() => RemoveFromCart(CartProduct)}
+                onClick={() => removeFromCart(CartProduct)}
               >
                 Remove
               </ButtonComponent>
@@ -90,7 +90,7 @@ const ProductCard = ({ product, cart = [] }: productCardProps) => {
           ) : (
             <ButtonComponent
               className={`${styles.atc}`}
-              onClick={() => SaveToCart({ ...product, quantity: 1 })}
+              onClick={() => saveToCart({ ...product, quantity: 1 })}
             >
               Add to Cart
             </ButtonComponent>
