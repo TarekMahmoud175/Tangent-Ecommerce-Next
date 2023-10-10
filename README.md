@@ -37,6 +37,6 @@ Tangent Ecommerce includes the following features:
 
 /shop page for product browsing.
 /cart page for managing the shopping cart.
-Data is fetched from a dummy.json file.
+Data is fetched from a dummyjson.com .
 Cart data is stored in local storage for persistence.
 State management is handled using Redux. 
